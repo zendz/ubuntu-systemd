@@ -2,8 +2,8 @@
 [Unit]
 Description=Apache Kafka server (broker)
 Documentation=http://kafka.apache.org/documentation.html
-Requires=network.target remote-fs.target zookeeper.service
-After=network.target remote-fs.target zookeeper.service
+Requires=network.target remote-fs.target kafka-zookeeper.service
+After=network.target remote-fs.target kafka-zookeeper.service
 
 [Service]
 Environment="KAFKA_HEAP_OPTS=-Xmx2G -Xms2G"

@@ -1,0 +1,20 @@
+# file name: /etc/systemd/system/kafka.service
+[Unit]
+Description=Apache Zookeeper server (Kafka)
+Documentation=http://zookeeper.apache.org
+Requires=network.target remote-fs.target
+After=network.target remote-fs.target
+
+[Service]
+Environment="KAFKA_HEAP_OPTS=-Xmx2G -Xms2G"
+Type=simple
+PIDFile=/run/kafka-zookeeper.pid
+User=kafka
+Group=kafka
+ExecStart=/opt/kafka/bin/zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties
+ExecStop=/opt/kafka/bin/zookeeper-server-stop.sh
+Restart=on-failure
+SyslogIdentifier=kafka
+
+[Install]
+WantedBy=multi-user.target
